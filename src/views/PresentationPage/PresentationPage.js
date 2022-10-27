@@ -45,9 +45,7 @@ export default function PresentationPage() {
         changeColorOnScroll={{
           height: 500,
           color: "info",
-          
         }}
-        
       />
       <Parallax
         image={require("assets/img/bg9.jpg").default}
