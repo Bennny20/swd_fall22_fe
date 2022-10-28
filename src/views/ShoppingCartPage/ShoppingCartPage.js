@@ -109,30 +109,30 @@ export default function ShoppingCartPage() {
                     <span key={1}>
                       <small className={classes.tdNumberSmall}>€</small> 549
                     </span>,
-                    // <span key={1}>
-                    //   1{` `}
-                    //   <div className={classes.buttonGroup}>
-                    //     <Button
-                    //       color="info"
-                    //       size="sm"
-                    //       round
-                    //       className={classes.firstButton}
-                    //     >
-                    //       <Remove />
-                    //     </Button>
-                    //     <Button
-                    //       color="info"
-                    //       size="sm"
-                    //       round
-                    //       className={classes.lastButton}
-                    //     >
-                    //       <Add />
-                    //     </Button>
-                    //   </div>
-                    // </span>,
-                    // <span key={1}>
-                    //   <small className={classes.tdNumberSmall}>€</small> 549
-                    // </span>,
+                    <span key={1}>
+                      1{` `}
+                      <div className={classes.buttonGroup}>
+                        <Button
+                          color="info"
+                          size="sm"
+                          round
+                          className={classes.firstButton}
+                        >
+                          Add new
+                        </Button>
+                        <Button
+                          color="info"
+                          size="sm"
+                          round
+                          className={classes.lastButton}
+                        >
+                          <Add />
+                        </Button>
+                      </div>
+                    </span>,
+                    <span key={1}>
+                      <small className={classes.tdNumberSmall}>€</small> 549
+                    </span>,
                     <Tooltip
                       key={1}
                       id="close1"

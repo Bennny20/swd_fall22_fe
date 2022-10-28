@@ -5,7 +5,11 @@ import GridItem from "components/Grid/GridItem.js";
 import InfoArea from "components/InfoArea/InfoArea.js";
 import { Link } from "react-router-dom";
 import Button from "components/CustomButtons/Button.js";
-
+// import CardBody from "components/Card/CardBody.js";
+import CustomInput from "components/CustomInput/CustomInput.js";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import Search from "@material-ui/icons/Search";
+// import Mail from "@material-ui/icons/Mail";
 // @material-ui icons
 import Apps from "@material-ui/icons/Apps";
 import ViewDay from "@material-ui/icons/ViewDay";
@@ -31,6 +35,34 @@ export default function SectionDescription() {
           </GridItem>
         </GridContainer>
         <div className={classes.features}>
+          <form>
+            <GridContainer>
+              <GridItem xs={12} sm={6} md={6} lg={8}>
+                <CustomInput
+                  id="emailPreFooter"
+                  formControlProps={{
+                    fullWidth: true,
+                    className: classes.cardForm,
+                  }}
+                  inputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start"></InputAdornment>
+                    ),
+                    placeholder: "Find project...",
+                  }}
+                />
+              </GridItem>
+              <GridItem xs={12} sm={6} md={6} lg={4}>
+                <Button
+                  color="primary"
+                  block
+                  className={classes.subscribeButton}
+                >
+                  <Search className={classes.searchIcon} />
+                </Button>
+              </GridItem>
+            </GridContainer>
+          </form>
           <GridContainer>
             <GridItem md={4} sm={4}>
               <InfoArea
