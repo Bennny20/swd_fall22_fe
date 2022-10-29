@@ -21,11 +21,25 @@ import Card from "components/Card/Card.js";
 import CardBody from "components/Card/CardBody.js";
 import CardHeader from "components/Card/CardHeader.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
-
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
 import loginPageStyle from "assets/jss/material-kit-pro-react/views/loginPageStyle.js";
 
 import image from "assets/img/bg7.jpg";
 
+// Configure FirebaseUI.
+const uiConfig = {
+  // Popup signin flow rather than redirect flow.
+  signInFlow: "redirect",
+  // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
+  signInSuccessUrl: "/",
+  // We will display Google and Facebook as auth providers.
+  signInOptions: [
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+  ],
+};
 const useStyles = makeStyles(loginPageStyle);
 
 export default function LoginPage() {
@@ -62,7 +76,7 @@ export default function LoginPage() {
                   >
                     <h4 className={classes.cardTitle}>Login</h4>
                     <div className={classes.socialLine}>
-                      <Button
+                      {/* <Button
                         justIcon
                         color="transparent"
                         className={classes.iconButtons}
@@ -85,7 +99,13 @@ export default function LoginPage() {
                         onClick={(e) => e.preventDefault()}
                       >
                         <i className="fab fa-google-plus-g" />
-                      </Button>
+                      </Button> */}
+
+                      {/* login with google button */}
+                      <StyledFirebaseAuth
+                        uiConfig={uiConfig}
+                        firebaseAuth={firebase.auth()}
+                      />
                     </div>
                   </CardHeader>
                   <p className={classes.description + " " + classes.textCenter}>
