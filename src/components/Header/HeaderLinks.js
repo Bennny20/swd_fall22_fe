@@ -12,6 +12,7 @@ import ListItem from "@material-ui/core/ListItem";
 import Icon from "@material-ui/core/Icon";
 
 // @material-ui/icons
+import Add from "@material-ui/icons/Add";
 import Apps from "@material-ui/icons/Apps";
 import ShoppingCart from "@material-ui/icons/ShoppingCart";
 import ViewDay from "@material-ui/icons/ViewDay";
@@ -253,7 +254,7 @@ export default function HeaderLinks(props) {
           className={classes.navButton}
           round
         >
-          <LocationOn /> Add new
+          <Add /> Add new
         </Button>
       </ListItem>
       <ListItem className={classes.listItem}>
