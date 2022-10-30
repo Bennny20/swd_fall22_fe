@@ -248,13 +248,13 @@ export default function HeaderLinks(props) {
       </ListItem>
       <ListItem className={classes.listItem}>
         <Button
-          href="/contact-us"
+          href="/about-us"
           color={window.innerWidth < 960 ? "info" : "white"}
           // target="_blank"
           className={classes.navButton}
           round
         >
-          <Add /> Add new
+          <Add /> Add new project
         </Button>
       </ListItem>
       <ListItem className={classes.listItem}>
@@ -263,13 +263,8 @@ export default function HeaderLinks(props) {
         </Link>
       </ListItem>
       <ListItem className={classes.listItem}>
-        <Link to="/signup-page" className={classes.dropdownLink}>
-          <PersonAdd className={classes.dropdownIcons} /> Signup
-        </Link>
-      </ListItem>
-      <ListItem className={classes.listItem}>
         <Link to="/login-page" className={classes.dropdownLink}>
-          <Fingerprint className={classes.dropdownIcons} /> Login
+          <Fingerprint className={classes.dropdownIcons} /> Logout
         </Link>
       </ListItem>
     </List>

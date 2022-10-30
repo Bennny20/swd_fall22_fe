@@ -23,6 +23,7 @@ import "assets/scss/material-kit-pro-react.scss?v=1.10.0";
 
 // pages for this product
 import AboutUsPage from "views/AboutUsPage/AboutUsPage.js";
+import NewItem from "views/AboutUsPage/NewProjectItem.js";
 import BlogPostPage from "views/BlogPostPage/BlogPostPage.js";
 import BlogPostsPage from "views/BlogPostsPage/BlogPostsPage.js";
 import ComponentsPage from "views/ComponentsPage/ComponentsPage.js";
@@ -45,6 +46,7 @@ ReactDOM.render(
   <Router history={hist}>
     <Switch>
       <Route path="/about-us" component={AboutUsPage} />
+      <Route path="/new-project-item" component={NewItem} />
       <Route path="/blog-post" component={BlogPostPage} />
       <Route path="/blog-posts" component={BlogPostsPage} />
       <Route path="/components" component={ComponentsPage} />

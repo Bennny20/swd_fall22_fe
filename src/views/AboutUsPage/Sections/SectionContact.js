@@ -25,39 +25,45 @@ export default function SectionContact() {
   const classes = useStyles();
   return (
     <div className={classes.aboutUs}>
-      <GridContainer>
+      <GridContainer justify="center">
         <GridItem
           md={8}
           sm={8}
           className={classNames(classes.mrAuto, classes.mlAuto)}
         >
-          <h2 className={classNames(classes.title, classes.textCenter)}>
-            Want to work with us?
-          </h2>
-          <h4 className={classNames(classes.description, classes.textCenter)}>
+          <h4 className={classNames(classes.title, classes.textCenter)}></h4>
+          {/* <h4 className={classNames(classes.description, classes.textCenter)}>
             Divide details about your product or agency work into parts. Write a
             few lines about each one and contact us about any further
             collaboration. We will get back to you in a couple of hours.
-          </h4>
+          </h4> */}
           <form>
             <GridContainer>
-              <GridItem md={4} sm={4}>
+              <GridItem md={20} sm={20}>
                 <CustomInput
-                  labelText="Your name"
+                  labelText="Name project"
                   formControlProps={{
                     fullWidth: true,
                   }}
                 />
-              </GridItem>
-              <GridItem md={4} sm={4}>
                 <CustomInput
-                  labelText="Your email"
+                  labelText="Time"
                   formControlProps={{
                     fullWidth: true,
                   }}
                 />
-              </GridItem>
-              <GridItem md={4} sm={4}>
+                <CustomInput
+                  labelText="Description"
+                  id="description"
+                  formControlProps={{
+                    fullWidth: true,
+                    className: classes.textArea,
+                  }}
+                  inputProps={{
+                    multiline: true,
+                    rows: 5,
+                  }}
+                />
                 <FormControl
                   fullWidth
                   className={
@@ -86,7 +92,7 @@ export default function SectionContact() {
                         root: classes.selectMenuItem,
                       }}
                     >
-                      Speciality
+                      Type
                     </MenuItem>
                     <MenuItem
                       classes={{
