@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 const imgs = [
   ["h_1", "h_2", "h_3", "h_4"],
   ["f_1", "f_2", "f_3", "f_4"],
