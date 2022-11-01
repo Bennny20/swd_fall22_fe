@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // @material-ui/core components
@@ -12,12 +12,27 @@ import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
 import Button from "components/CustomButtons/Button.js";
-
+import projectApi from "api/projectApi";
 import contactStyle from "assets/jss/material-kit-pro-react/views/aboutUsSections/contactStyle.js";
 
 const useStyles = makeStyles(contactStyle);
 
 export default function SectionContact() {
+  const [projectTypeList, setProjectTypeList] = useState([]);
+  useEffect(() => {
+    const fetchProjectTypeList = async () => {
+      try {
+        const params = { page: 1, size: 10 };
+        const response = await projectApi.getAllProjectType(params);
+        console.log("Fetch projects successfully: ", response);
+        setProjectTypeList(response);
+      } catch (error) {
+        console.log("Failed to fetch project list: ", error);
+      }
+    };
+    fetchProjectTypeList();
+  }, []);
+
   const [specialitySelect, setSpecialitySelect] = React.useState("1");
   const handleSpeciality = (event) => {
     setSpecialitySelect(event.target.value);
@@ -94,33 +109,21 @@ export default function SectionContact() {
                     >
                       Type
                     </MenuItem>
-                    <MenuItem
-                      classes={{
-                        root: classes.selectMenuItem,
-                        selected: classes.selectMenuItemSelected,
-                      }}
-                      value="1"
-                    >
-                      I{"'"}m a Designer
-                    </MenuItem>
-                    <MenuItem
-                      classes={{
-                        root: classes.selectMenuItem,
-                        selected: classes.selectMenuItemSelected,
-                      }}
-                      value="2"
-                    >
-                      I{"'"}m a Developer
-                    </MenuItem>
-                    <MenuItem
-                      classes={{
-                        root: classes.selectMenuItem,
-                        selected: classes.selectMenuItemSelected,
-                      }}
-                      value="3"
-                    >
-                      I{"'"}m a Hero
-                    </MenuItem>
+                    {projectTypeList.map((sp) => {
+                      console.log(sp);
+                      return (
+                        <MenuItem
+                          classes={{
+                            root: classes.selectMenuItem,
+                            selected: classes.selectMenuItemSelected,
+                          }}
+                          key={sp.id}
+                          value={sp.name}
+                        >
+                          {sp.name}
+                        </MenuItem>
+                      );
+                    })}
                   </Select>
                 </FormControl>
               </GridItem>

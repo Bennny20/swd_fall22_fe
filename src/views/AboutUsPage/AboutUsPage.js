@@ -21,7 +21,6 @@ import SectionTeam from "views/AboutUsPage/Sections/SectionTeam.js";
 import SectionServices from "views/AboutUsPage/Sections/SectionServices.js";
 import SectionOffice from "views/AboutUsPage/Sections/SectionOffice.js";
 import SectionContact from "views/AboutUsPage/Sections/SectionContact.js";
-
 import aboutUsStyle from "assets/jss/material-kit-pro-react/views/aboutUsStyle.js";
 
 const useStyles = makeStyles(aboutUsStyle);
@@ -61,7 +60,6 @@ export default function AboutUsPage() {
               )}
             >
               <h1 className={classes.title}>Add new project</h1>
-             
             </GridItem>
           </GridContainer>
         </div>

@@ -46,14 +46,31 @@ export default function PresentationPage() {
   });
   const classes = useStyles();
 
+  //get all
+  // const [projectList, setProjectList] = useState([]);
+  // useEffect(() => {
+  //   const fetchProjectList = async () => {
+  //     try {
+  //       const params = { page: 1, size: 10 };
+  //       const response = await projectApi.getAll(params);
+  //       console.log("Fetch projects successfully: ", response);
+  //       setProjectList(response);
+  //     } catch (error) {
+  //       console.log("Failed to fetch project list: ", error);
+  //     }
+  //   };
+  //   fetchProjectList();
+  // }, []);
+
+  //get by userid
   const [projectList, setProjectList] = useState([]);
   useEffect(() => {
     const fetchProjectList = async () => {
       try {
-        const params = { page: 1, size: 10 };
-        const response = await projectApi.getAll(params);
+        const params = { userID: 4, page: 1, size: 10 };
+        const response = await projectApi.getByUserID(params);
         console.log("Fetch projects successfully: ", response);
-        // setProjectList(response.data);
+        setProjectList(response);
       } catch (error) {
         console.log("Failed to fetch project list: ", error);
       }
@@ -111,7 +128,7 @@ export default function PresentationPage() {
         </div>
       </Parallax>
       <div className={classNames(classes.main, classes.mainRaised)}>
-        <SectionDescription />
+        <SectionDescription projectList={projectList} />
         <SectionComponents />
         <SectionCards />
         <SectionContent />

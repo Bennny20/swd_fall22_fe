@@ -1,4 +1,3 @@
-import React from "react";
 // core components
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
@@ -11,17 +10,23 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Search from "@material-ui/icons/Search";
 // import Mail from "@material-ui/icons/Mail";
 // @material-ui icons
-import Apps from "@material-ui/icons/Apps";
-import ViewDay from "@material-ui/icons/ViewDay";
+// import Apps from "@material-ui/icons/Apps";
+// import ViewDay from "@material-ui/icons/ViewDay";
 import ViewCarousel from "@material-ui/icons/ViewCarousel";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 
 import descriptionStyle from "assets/jss/material-kit-pro-react/views/presentationSections/descriptionStyle.js";
+import React from "react";
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles(descriptionStyle);
 
-export default function SectionDescription() {
+SectionDescription.propTypes = {
+  projectList: PropTypes.node.isRequired,
+};
+export default function SectionDescription({ projectList }) {
+  // const { projectList } = projectList;
   const classes = useStyles();
   return (
     <div className={classes.section}>
@@ -64,120 +69,30 @@ export default function SectionDescription() {
             </GridContainer>
           </form>
           <GridContainer>
-            <GridItem md={4} sm={4}>
-              <InfoArea
-                title="Name project"
-                description="Every element that you need in a product comes built in as a component. All components fit perfectly with each other and can take variations in colour."
-                icon={Apps}
-                iconColor="danger"
-                vertical={true}
-              />
-              <Link to={"/sections"}>
-                <Button
-                  color="rose"
-                  target="_blank"
-                  className={classes.navButton}
-                  round
-                >
-                  Project Item
-                </Button>
-              </Link>
-            </GridItem>
-            <GridItem md={4} sm={4}>
-              <InfoArea
-                title="Name project"
-                description="Every element that you need in a product comes built in as a component. All components fit perfectly with each other and can take variations in colour."
-                icon={Apps}
-                iconColor="danger"
-                vertical={true}
-              />
-              <Link to={"/sections"}>
-                <Button
-                  color="rose"
-                  target="_blank"
-                  className={classes.navButton}
-                  round
-                >
-                  Project Item
-                </Button>
-              </Link>
-            </GridItem>
-            <GridItem md={4} sm={4}>
-              <InfoArea
-                title="Name project"
-                description="Every element that you need in a product comes built in as a component. All components fit perfectly with each other and can take variations in colour."
-                icon={Apps}
-                iconColor="danger"
-                vertical={true}
-              />
-              <Link to={"/sections"}>
-                <Button
-                  color="rose"
-                  target="_blank"
-                  className={classes.navButton}
-                  round
-                >
-                  Project Item
-                </Button>
-              </Link>
-            </GridItem>
-            <GridItem md={4} sm={4}>
-              <InfoArea
-                title="Name project"
-                description="Every element that you need in a product comes built in as a component. All components fit perfectly with each other and can take variations in colour."
-                icon={Apps}
-                iconColor="danger"
-                vertical={true}
-              />
-              <Link to={"/sections"}>
-                <Button
-                  color="rose"
-                  target="_blank"
-                  className={classes.navButton}
-                  round
-                >
-                  Project Item
-                </Button>
-              </Link>
-            </GridItem>
-            <GridItem md={4} sm={4}>
-              <InfoArea
-                title="Multi-Purpose Sections"
-                description="Putting together a page has never been easier than matching together sections. From team presentation to pricing options, you can easily customise and built your pages."
-                icon={ViewDay}
-                iconColor="primary"
-                vertical={true}
-              />
-              <Link to={"/sections"}>
-                <Button
-                  color="rose"
-                  target="_blank"
-                  className={classes.navButton}
-                  round
-                >
-                  Project Item
-                </Button>
-              </Link>
-            </GridItem>
-            <GridItem md={4} sm={4}>
-              <InfoArea
-                title="Example Pages"
-                description="If you want to get inspiration or just show something directly to your clients, you can jump start your development with our pre-built example pages."
-                icon={ViewCarousel}
-                iconColor="success"
-                vertical={true}
-              />
-              <Link to={"/sections"}>
-                <Button
-                  color="rose"
-                  target="_blank"
-                  className={classes.navButton}
-                  round
-                >
-                  Project Item
-                </Button>
-              </Link>
-            </GridItem>
+            {projectList.map((sp) => {
+              console.log(sp);
+              return (
+                <GridItem key={sp.id} md={4} sm={4}>
+                  <InfoArea
+                    title={sp.name}
+                    description={sp.description}
+                    icon={ViewCarousel}
+                    iconColor="success"
+                    vertical={true}
+                  />
+                  <Link to={"/sections"}>
+                    <Button
+                      color="rose"
+                      target="_blank"
+                      className={classes.navButton}
+                      round
+                    >
+                      Project Item
+                    </Button>
+                  </Link>
+                </GridItem>
+              );
+            })}
           </GridContainer>
         </div>
       </div>
