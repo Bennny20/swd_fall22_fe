@@ -818,6 +818,15 @@ export default function SectionBasics() {
               </div>
               <GridContainer>
                 <GridItem xs={12} sm={6} md={6} lg={5}>
+                  <CustomInput
+                    id="regular"
+                    inputProps={{
+                      placeholder: "Regular",
+                    }}
+                    formControlProps={{
+                      fullWidth: true,
+                    }}
+                  />
                   <FormControl fullWidth className={classes.selectFormControl}>
                     <InputLabel
                       htmlFor="simple-select"
@@ -878,6 +887,15 @@ export default function SectionBasics() {
                   </FormControl>
                 </GridItem>
                 <GridItem xs={12} sm={6} md={6} lg={5}>
+                  <CustomInput
+                    id="regular"
+                    inputProps={{
+                      placeholder: "Regular",
+                    }}
+                    formControlProps={{
+                      fullWidth: true,
+                    }}
+                  />
                   <FormControl fullWidth className={classes.selectFormControl}>
                     <InputLabel
                       htmlFor="multiple-select"

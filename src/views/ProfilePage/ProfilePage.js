@@ -22,8 +22,8 @@ import HeaderLinks from "components/Header/HeaderLinks.js";
 import NavPills from "components/NavPills/NavPills.js";
 import Card from "components/Card/Card.js";
 import CardBody from "components/Card/CardBody.js";
-import CardHeader from "components/Card/CardHeader.js";
-import Badge from "components/Badge/Badge.js";
+// import CardHeader from "components/Card/CardHeader.js";
+// import Badge from "components/Badge/Badge.js";
 import Muted from "components/Typography/Muted.js";
 import Parallax from "components/Parallax/Parallax.js";
 import Clearfix from "components/Clearfix/Clearfix.js";
@@ -313,9 +313,7 @@ export default function ProfilePage({ ...rest }) {
                                   <Muted>
                                     <h6>MODEL</h6>
                                   </Muted>
-                                  <p className={classes.description}>
-                                    Mô tả
-                                  </p>
+                                  <p className={classes.description}>Mô tả</p>
                                 </CardBody>
                               </GridItem>
                             </GridContainer>
@@ -351,9 +349,7 @@ export default function ProfilePage({ ...rest }) {
                                   <Muted>
                                     <h6>MODEL</h6>
                                   </Muted>
-                                  <p className={classes.description}>
-                                    Mô tả
-                                  </p>
+                                  <p className={classes.description}>Mô tả</p>
                                 </CardBody>
                               </GridItem>
                             </GridContainer>
@@ -389,9 +385,7 @@ export default function ProfilePage({ ...rest }) {
                                   <Muted>
                                     <h6>MODEL</h6>
                                   </Muted>
-                                  <p className={classes.description}>
-                                    Mô tả
-                                  </p>
+                                  <p className={classes.description}>Mô tả</p>
                                 </CardBody>
                               </GridItem>
                             </GridContainer>
@@ -427,9 +421,7 @@ export default function ProfilePage({ ...rest }) {
                                   <Muted>
                                     <h6>MODEL</h6>
                                   </Muted>
-                                  <p className={classes.description}>
-                                    Mô tả
-                                  </p>
+                                  <p className={classes.description}>Mô tả</p>
                                 </CardBody>
                               </GridItem>
                             </GridContainer>

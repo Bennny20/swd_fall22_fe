@@ -33,7 +33,7 @@ const uiConfig = {
   // Popup signin flow rather than redirect flow.
   signInFlow: "redirect",
   // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
-  signInSuccessUrl: "/",
+  signInSuccessUrl: "/home",
   // We will display Google and Facebook as auth providers.
   signInOptions: [
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -54,7 +54,8 @@ export default function LoginPage() {
         absolute
         color="transparent"
         brand="Happy connection"
-        links={<HeaderLinks dropdownHoverColor="info" />}
+        // link
+        // links={<HeaderLinks dropdownHoverColor="info" />}
       />
       <div
         className={classes.pageHeader}
@@ -183,10 +184,10 @@ export default function LoginPage() {
                       target="_blank"
                       className={classes.block}
                     >
-                      Creative Tim
+                      Happy connection
                     </a>
                   </ListItem>
-                  <ListItem className={classes.inlineBlock}>
+                  {/* <ListItem className={classes.inlineBlock}>
                     <a
                       href="https://www.creative-tim.com/presentation?ref=mkpr-login"
                       target="_blank"
@@ -211,7 +212,7 @@ export default function LoginPage() {
                     >
                       Licenses
                     </a>
-                  </ListItem>
+                  </ListItem> */}
                 </List>
               </div>
               <div className={classes.right}>
@@ -221,9 +222,8 @@ export default function LoginPage() {
                   href="https://www.creative-tim.com?ref=mkpr-login"
                   target="_blank"
                 >
-                  Creative Tim
+                  SWD GROUP
                 </a>{" "}
-                for a better web
               </div>
             </div>
           }

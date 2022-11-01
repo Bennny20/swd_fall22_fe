@@ -80,14 +80,7 @@ export default function ShoppingCartPage() {
             <CardBody plain>
               <h3 className={classes.cardTitle}>List apply</h3>
               <Table
-                tableHead={[
-                  "",
-                  "Name",
-                  "Requirement",
-                  "Time",
-                  "PRICE",
-                  "",
-                ]}
+                tableHead={["", "Name", "Requirement", "Time", "PRICE", ""]}
                 tableData={[
                   [
                     // Image
@@ -100,48 +93,21 @@ export default function ShoppingCartPage() {
                         Name
                       </a>
                       <br />
-                      {/* <small className={classes.tdNameSmall}>
-                        by Dolce&amp;Gabbana
-                      </small> */}
                     </span>,
                     "Red",
                     "M",
                     <span key={1}>
                       <small className={classes.tdNumberSmall}>€</small> 549
                     </span>,
-                    <span key={1}>
-                      1{` `}
-                      <div className={classes.buttonGroup}>
-                        <Button
-                          color="info"
-                          size="sm"
-                          round
-                          className={classes.firstButton}
-                        >
-                          Add new
-                        </Button>
-                        <Button
-                          color="info"
-                          size="sm"
-                          round
-                          className={classes.lastButton}
-                        >
-                          <Add />
-                        </Button>
-                      </div>
-                    </span>,
-                    <span key={1}>
-                      <small className={classes.tdNumberSmall}>€</small> 549
-                    </span>,
                     <Tooltip
                       key={1}
                       id="close1"
-                      title="Remove item"
+                      title=""
                       placement="left"
                       classes={{ tooltip: classes.tooltip }}
                     >
-                      <Button link className={classes.actionButton}>
-                        <Close />
+                      <Button color="reddit" round>
+                        Applied
                       </Button>
                     </Tooltip>,
                   ],
@@ -156,174 +122,71 @@ export default function ShoppingCartPage() {
                         Name
                       </a>
                       <br />
-                      {/* <small className={classes.tdNameSmall}>
-                        by Dolce&amp;Gabbana
-                      </small> */}
                     </span>,
                     "Red",
                     "M",
                     <span key={1}>
                       <small className={classes.tdNumberSmall}>€</small> 549
                     </span>,
-                    // <span key={1}>
-                    //   1{` `}
-                    //   <div className={classes.buttonGroup}>
-                    //     <Button
-                    //       color="info"
-                    //       size="sm"
-                    //       round
-                    //       className={classes.firstButton}
-                    //     >
-                    //       <Remove />
-                    //     </Button>
-                    //     <Button
-                    //       color="info"
-                    //       size="sm"
-                    //       round
-                    //       className={classes.lastButton}
-                    //     >
-                    //       <Add />
-                    //     </Button>
-                    //   </div>
-                    // </span>,
-                    // <span key={1}>
-                    //   <small className={classes.tdNumberSmall}>€</small> 549
-                    // </span>,
                     <Tooltip
                       key={1}
                       id="close1"
-                      title="Remove item"
+                      title=""
                       placement="left"
                       classes={{ tooltip: classes.tooltip }}
                     >
-                      <Button link className={classes.actionButton}>
-                        <Close />
+                      <Button color="warning" round>
+                        Cancel
                       </Button>
                     </Tooltip>,
                   ],
-                  // [
-                  //   <div className={classes.imgContainer} key={1}>
-                  //     <img src={product2} alt="..." className={classes.img} />
-                  //   </div>,
-                  //   <span key={1}>
-                  //     <a href="#jacket" className={classes.tdNameAnchor}>
-                  //       Short Pants{" "}
-                  //     </a>
-                  //     <br />
-                  //     <small className={classes.tdNameSmall}>by Gucci</small>
-                  //   </span>,
-                  //   "Purple",
-                  //   "M",
-                  //   <span key={1}>
-                  //     <small className={classes.tdNumberSmall}>€</small> 499
-                  //   </span>,
-                  //   <span key={1}>
-                  //     2{` `}
-                  //     <div className={classes.buttonGroup}>
-                  //       <Button
-                  //         color="info"
-                  //         size="sm"
-                  //         round
-                  //         className={classes.firstButton}
-                  //       >
-                  //         <Remove />
+                  [
+                    // Image
+                    <div className={classes.imgContainer} key={1}>
+                      <img src={face1} alt="..." className={classes.img} />
+                    </div>,
+                    // Name
+                    <span key={1}>
+                      <a href="/profile-page" className={classes.tdNameAnchor}>
+                        Name
+                      </a>
+                      <br />
+
+                    </span>,
+                    "Red",
+                    "M",
+                    <span key={1}>
+                      <small className={classes.tdNumberSmall}>€</small> 549
+                    </span>,
+                    <Tooltip
+                      key={1}
+                      id="close1"
+                      title=""
+                      placement="left"
+                      classes={{ tooltip: classes.tooltip }}
+                    >
+                      <Button color="info" round>
+                        Apply
+                      </Button>
+                    </Tooltip>,
+                  ],
+                  // {
+                  //   purchase: true,
+                  //   colspan: "3",
+                  //   amount: (
+                  //     <span>
+                  //       <small>€</small>2,346
+                  //     </span>
+                  //   ),
+                  //   col: {
+                  //     colspan: 3,
+                  //     text: (
+                  //       <Button color="info" round>
+                  //         Complete Purchase <KeyboardArrowRight />
                   //       </Button>
-                  //       <Button
-                  //         color="info"
-                  //         size="sm"
-                  //         round
-                  //         className={classes.lastButton}
-                  //       >
-                  //         <Add />
-                  //       </Button>
-                  //     </div>
-                  //   </span>,
-                  //   <span key={1}>
-                  //     <small className={classes.tdNumberSmall}>€</small> 998
-                  //   </span>,
-                  //   <Tooltip
-                  //     key={1}
-                  //     id="close2"
-                  //     title="Remove item"
-                  //     placement="left"
-                  //     classes={{ tooltip: classes.tooltip }}
-                  //   >
-                  //     <Button link className={classes.actionButton}>
-                  //       <Close />
-                  //     </Button>
-                  //   </Tooltip>,
-                  // ],
-                  // [
-                  //   <div className={classes.imgContainer} key={1}>
-                  //     <img src={product3} alt="..." className={classes.img} />
-                  //   </div>,
-                  //   <span key={1}>
-                  //     <a href="#jacket" className={classes.tdNameAnchor}>
-                  //       Pencil Skirt
-                  //     </a>
-                  //     <br />
-                  //     <small className={classes.tdNameSmall}>
-                  //       by Valentino
-                  //     </small>
-                  //   </span>,
-                  //   "White",
-                  //   "XL",
-                  //   <span key={1}>
-                  //     <small className={classes.tdNumberSmall}>€</small> 799
-                  //   </span>,
-                  //   <span key={1}>
-                  //     1{` `}
-                  //     <div className={classes.buttonGroup}>
-                  //       <Button
-                  //         color="info"
-                  //         size="sm"
-                  //         round
-                  //         className={classes.firstButton}
-                  //       >
-                  //         <Remove />
-                  //       </Button>
-                  //       <Button
-                  //         color="info"
-                  //         size="sm"
-                  //         round
-                  //         className={classes.lastButton}
-                  //       >
-                  //         <Add />
-                  //       </Button>
-                  //     </div>
-                  //   </span>,
-                  //   <span key={1}>
-                  //     <small className={classes.tdNumberSmall}>€</small> 799
-                  //   </span>,
-                  //   <Tooltip
-                  //     key={1}
-                  //     id="close3"
-                  //     title="Remove item"
-                  //     placement="left"
-                  //     classes={{ tooltip: classes.tooltip }}
-                  //   >
-                  //     <Button link className={classes.actionButton}>
-                  //       <Close />
-                  //     </Button>
-                  //   </Tooltip>,
-                  // ],
-                  {
-                    purchase: true,
-                    colspan: "3",
-                    amount: (
-                      <span>
-                        <small>€</small>2,346
-                      </span>
-                    ),
-                    col: {
-                      colspan: 3,
-                      text: (
-                        <Button color="info" round>
-                          Complete Purchase <KeyboardArrowRight />
-                        </Button>
-                      ),
-                    },
-                  },
+                  //     ),
+                  //   },
+                  // },
                 ]}
                 tableShopping
                 customHeadCellClasses={[
