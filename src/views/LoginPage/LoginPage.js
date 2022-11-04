@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React from "react";
+import React, { useState } from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -16,33 +16,66 @@ import HeaderLinks from "components/Header/HeaderLinks.js";
 import Footer from "components/Footer/Footer.js";
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
-import Button from "components/CustomButtons/Button.js";
 import Card from "components/Card/Card.js";
 import CardBody from "components/Card/CardBody.js";
 import CardHeader from "components/Card/CardHeader.js";
-import CustomInput from "components/CustomInput/CustomInput.js";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import loginPageStyle from "assets/jss/material-kit-pro-react/views/loginPageStyle.js";
 
 import image from "assets/img/bg7.jpg";
-
+import axiosClient from "api/axiosClient.js";
+import { NavigateBefore } from "@material-ui/icons";
+import { Box, TextField, Button } from "@material-ui/core";
+import authApi from "api/auth";
+import { useHistory } from "react-router-dom";
 // Configure FirebaseUI.
 const uiConfig = {
-  // Popup signin flow rather than redirect flow.
-  signInFlow: "redirect",
+  signInFlow: "popup",
   // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
-  signInSuccessUrl: "/home",
+  callbacks: {
+    signInSuccessWithAuthResult: function (authResult, redirectUrl) {
+      var user = authResult.user;
+      var credential = authResult.credential;
+      var isNewUser = authResult.additionalUserInfo.isNewUser;
+      var providerId = authResult.additionalUserInfo.providerId;
+      var operationType = authResult.operationType;
+      console.log([user, credential.idToken]);
+
+      return true;
+    },
+  },
   // We will display Google and Facebook as auth providers.
   signInOptions: [
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
     // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
   ],
+  // signInSuccessUrl: "/home",
 };
-const useStyles = makeStyles(loginPageStyle);
 
+const useStyles = makeStyles(loginPageStyle);
 export default function LoginPage() {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const history = useHistory();
+  const handleChangeEmail = (e) => {
+    console.log(e.target.value);
+    setEmail(e.target.value);
+  };
+  const handleChangePassword = (e) => {
+    console.log(e.target.value);
+    setPassword(e.target.value);
+  };
+  const handleLoginEmailAndPassword = async () => {
+    const res = await authApi
+      .getAuthByEmailAndPassword(email, password)
+      .then((value) => {
+        localStorage.setItem("token", value.token);
+        history.push("/home");
+      });
+    console.log(res);
+  };
   React.useEffect(() => {
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
@@ -128,42 +161,51 @@ export default function LoginPage() {
                         ),
                       }}
                     /> */}
-                    <CustomInput
-                      id="email"
-                      formControlProps={{
-                        fullWidth: true,
-                      }}
-                      inputProps={{
-                        placeholder: "Email...",
-                        type: "email",
-                        startAdornment: (
-                          <InputAdornment position="start">
-                            <Email className={classes.inputIconsColor} />
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
-                    <CustomInput
-                      id="pass"
-                      formControlProps={{
-                        fullWidth: true,
-                      }}
-                      inputProps={{
-                        placeholder: "Password",
-                        type: "password",
-                        startAdornment: (
-                          <InputAdornment position="start">
-                            <Icon className={classes.inputIconsColor}>
-                              lock_utline
-                            </Icon>
-                          </InputAdornment>
-                        ),
-                        autoComplete: "off",
-                      }}
-                    />
+                    <Box my={1}>
+                      <TextField
+                        id="email"
+                        variant="filled"
+                        fullWidth="true"
+                        inputProps={{
+                          placeholder: "Email...",
+                          type: "email",
+                          startAdornment: (
+                            <InputAdornment position="start">
+                              <Email className={classes.inputIconsColor} />
+                            </InputAdornment>
+                          ),
+                        }}
+                        onChange={handleChangeEmail}
+                      />
+                    </Box>
+                    <Box my={1}>
+                      <TextField
+                        id="pass"
+                        variant="filled"
+                        fullWidth="true"
+                        inputProps={{
+                          placeholder: "Password",
+                          type: "password",
+                          startAdornment: (
+                            <InputAdornment position="start">
+                              <Icon className={classes.inputIconsColor}>
+                                lock_utline
+                              </Icon>
+                            </InputAdornment>
+                          ),
+                          autoComplete: "off",
+                        }}
+                        onChange={handleChangePassword}
+                      />
+                    </Box>
                   </CardBody>
                   <div className={classes.textCenter}>
-                    <Button simple color="primary" size="lg">
+                    <Button
+                      simple
+                      color="primary"
+                      size="lg"
+                      onClick={handleLoginEmailAndPassword}
+                    >
                       Login
                     </Button>
                   </div>
