@@ -85,8 +85,9 @@ export default function HeaderLinks(props) {
     };
     animateScroll();
   };
-  var onClickSections = {};
-
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+  };
   const { dropdownHoverColor } = props;
   const classes = useStyles();
   return (
@@ -263,7 +264,11 @@ export default function HeaderLinks(props) {
         </Link>
       </ListItem>
       <ListItem className={classes.listItem}>
-        <Link to="/login-page" className={classes.dropdownLink}>
+        <Link
+          to="/login-page"
+          className={classes.dropdownLink}
+          onClick={handleLogout}
+        >
           <Fingerprint className={classes.dropdownIcons} /> Logout
         </Link>
       </ListItem>
