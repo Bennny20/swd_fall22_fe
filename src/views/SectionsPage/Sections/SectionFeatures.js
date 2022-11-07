@@ -113,6 +113,16 @@ export default function SectionFeatures({ ...rest }) {
                     Max price{sp.maxPrice} <br />
                     Min price{sp.minPrice} <br />
                   </h5>
+                  <Link to={`/update-project-item/${sp.id}`}>
+                    <Button
+                      color="rose"
+                      target="_blank"
+                      className={classes.navButton}
+                      round
+                    >
+                      Update
+                    </Button>
+                  </Link>
                   <Link to={`/project-item-detail/${sp.id}`}>
                     <Button
                       color="rose"

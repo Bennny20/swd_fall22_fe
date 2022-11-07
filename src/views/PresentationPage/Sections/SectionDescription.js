@@ -98,6 +98,16 @@ export default function SectionDescription({ projectList }) {
                   />
                   {/* <h5 className={classes.description}>{sp.description}</h5>
                   <h5 className={classes.description}>{projectType.name}</h5> */}
+                  <Link to={`/update-project/${sp.id}`}>
+                    <Button
+                      color="rose"
+                      target="_blank"
+                      className={classes.navButton}
+                      round
+                    >
+                      Update
+                    </Button>
+                  </Link>
                   <Link to={`/project-item/${sp.id}`}>
                     <Button
                       color="rose"

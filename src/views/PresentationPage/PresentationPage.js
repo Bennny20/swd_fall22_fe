@@ -129,15 +129,15 @@ export default function PresentationPage() {
       </Parallax>
       <div className={classNames(classes.main, classes.mainRaised)}>
         <SectionDescription projectList={projectList} />
-        <SectionComponents />
+        {/* <SectionComponents />
         <SectionCards />
         <SectionContent />
         <SectionSections />
         <SectionExamples />
         <SectionFreeDemo />
-        <SectionOverview />
+        <SectionOverview /> */}
       </div>
-      <SectionPricing />
+      {/* <SectionPricing /> */}
       <Footer
         theme="white"
         content={
@@ -148,18 +148,17 @@ export default function PresentationPage() {
                 target="_blank"
                 className={classes.footerBrand}
               >
-                Material Kit PRO React
+                Happy connection
               </a>
             </div>
             <div className={classes.pullCenter}>
-              <List className={classes.list}>
+              {/* <List className={classes.list}>
                 <ListItem className={classes.inlineBlock}>
                   <a
-                    href="https://www.creative-tim.com/?ref=mkpr-presentation"
-                    target="_blank"
+                    href="/profile-page"
                     className={classes.block}
                   >
-                    Creative Tim
+                    Profile
                   </a>
                 </ListItem>
                 <ListItem className={classes.inlineBlock}>
@@ -185,7 +184,7 @@ export default function PresentationPage() {
                     Licenses
                   </a>
                 </ListItem>
-              </List>
+              </List> */}
             </div>
             <div className={classes.rightLinks}>
               <ul>
