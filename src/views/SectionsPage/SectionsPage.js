@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 // core components
 import Header from "components/Header/Header.js";
-import HeaderLinks2 from "components/Header/HeaderLinks.js";
+import HeaderLinks2 from "components/Header/HeaderLinks2.js";
 // sections of this Page
 // import SectionHeaders from "./Sections/SectionHeaders.js";
 import SectionFeatures from "./Sections/SectionFeatures.js";

@@ -31,12 +31,7 @@ export default function SectionContact() {
           sm={8}
           className={classNames(classes.mrAuto, classes.mlAuto)}
         >
-          <h4 className={classNames(classes.title, classes.textCenter)}></h4>
-          {/* <h4 className={classNames(classes.description, classes.textCenter)}>
-            Divide details about your product or agency work into parts. Write a
-            few lines about each one and contact us about any further
-            collaboration. We will get back to you in a couple of hours.
-          </h4> */}
+          <h1 className={classes.title}>Add new project item</h1>
           <form>
             <GridContainer>
               <GridItem md={20} sm={20}>
@@ -142,7 +137,7 @@ export default function SectionContact() {
                 )}
               >
                 <Button color="primary" round>
-                  Let{"'"}s talk
+                  Save
                 </Button>
               </GridItem>
             </GridContainer>

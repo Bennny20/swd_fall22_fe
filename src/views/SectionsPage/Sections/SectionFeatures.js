@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
+import FormatPaint from "@material-ui/icons/FormatPaint";
 // @material-ui/icons
 // import Chat from "@material-ui/icons/Chat";
 // import VerifiedUser from "@material-ui/icons/VerifiedUser";
@@ -12,25 +13,72 @@ import { makeStyles } from "@material-ui/core/styles";
 // import ChildFriendly from "@material-ui/icons/ChildFriendly";
 // import WatchLater from "@material-ui/icons/WatchLater";
 // import Code from "@material-ui/icons/Code";
-import FormatPaint from "@material-ui/icons/FormatPaint";
 // import Dashboard from "@material-ui/icons/Dashboard";
 // import ViewCarousel from "@material-ui/icons/ViewCarousel";
 // import AccessTime from "@material-ui/icons/AccessTime";
 // import AttachMoney from "@material-ui/icons/AttachMoney";
+// import iphone from "assets/img/sections/iphone.png";
+// import iphone2 from "assets/img/sections/iphone2.png";
+// import bg9 from "assets/img/bg9.jpg";
 import { Link } from "react-router-dom";
 import Button from "components/CustomButtons/Button.js";
-// core components
+
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 import InfoArea from "components/InfoArea/InfoArea.js";
 import featuresStyle from "assets/jss/material-kit-pro-react/views/sectionsSections/featuresStyle.js";
-// import iphone from "assets/img/sections/iphone.png";
-// import iphone2 from "assets/img/sections/iphone2.png";
-// import bg9 from "assets/img/bg9.jpg";
+import projectApi from "api/projectApi.js";
 
 const useStyles = makeStyles(featuresStyle);
 
 export default function SectionFeatures({ ...rest }) {
+  // load project by id
+  const [project, setProject] = useState([]);
+  useEffect(() => {
+    const fetchProjectList = async () => {
+      try {
+        const response = await projectApi.getProjectByID(1);
+        console.log("Fetch projects successfully: ", response);
+        setProject(response);
+      } catch (error) {
+        console.log("Failed to fetch project list: ", error);
+      }
+    };
+    fetchProjectList();
+  }, []);
+
+  // load list project item by id
+  const [projectItemList, setProjectItemList] = useState([]);
+  useEffect(() => {
+    const fetchProjecItemList = async () => {
+      try {
+        const params = { projectID: 1, page: 1, size: 10 };
+        const response = await projectApi.getProjectItemByID(params);
+        console.log("Fetch projects item successfully: ", response);
+        setProjectItemList(response);
+      } catch (error) {
+        console.log("Failed to fetch project item list: ", error);
+      }
+    };
+    fetchProjecItemList();
+  }, []);
+
+  const [projectType, setProjectType] = useState([]);
+  useEffect(() => {
+    const fetchProjectList = async () => {
+      try {
+        const response = await projectApi.getProjecTypeByID(
+          project.projectTypeID
+        );
+        console.log("Fetch project type successfully: ", response);
+        setProjectType(response);
+      } catch (error) {
+        console.log("Failed to fetch project type: ", error);
+      }
+    };
+    fetchProjectList();
+  }, []);
+
   const classes = useStyles();
   return (
     <div className="cd-section" {...rest}>
@@ -44,70 +92,40 @@ export default function SectionFeatures({ ...rest }) {
               md={8}
               className={classes.mlAuto + " " + classes.mrAuto}
             >
-              <h2 className={classes.title}>Template Pet Shop</h2>
-              <h5 className={classes.description}>
-                Template cơ bản dùng cho cửa hàng thú cưng
-              </h5>
+              <h2 className={classes.title}>{project.name}</h2>
+              <h5 className={classes.description}>{project.description}</h5>
+              <h5 className={classes.description}>{projectType.name}</h5>
             </GridItem>
           </GridContainer>
           <GridContainer>
-            <GridItem xs={12} sm={4} md={4}>
-              <InfoArea
-                vertical
-                icon={FormatPaint}
-                title="Project Item"
-                description="Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough"
-                iconColor="danger"
-              />
-              <Link to={"/shopping-cart-page"}>
-                <Button
-                  color="rose"
-                  target="_blank"
-                  className={classes.navButton}
-                  round
-                >
-                  View detail
-                </Button>
-              </Link>
-            </GridItem>
-            <GridItem xs={12} sm={4} md={4}>
-              <InfoArea
-                vertical
-                icon={FormatPaint}
-                title="Project Item"
-                description="Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough"
-                iconColor="danger"
-              />
-              <Link to={"/shopping-cart-page"}>
-                <Button
-                  color="rose"
-                  target="_blank"
-                  className={classes.navButton}
-                  round
-                >
-                  View detail
-                </Button>
-              </Link>
-            </GridItem>
-            <GridItem xs={12} sm={4} md={4}>
-              <InfoArea
-                vertical
-                icon={FormatPaint}
-                title="Project Item"
-                description="Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough"
-                iconColor="danger"
-              />
-              <Link to={"/shopping-cart-page"}>
-                <Button
-                  color="rose"
-                  target="_blank"
-                  className={classes.navButton}
-                  round
-                >
-                  View detail
-                </Button>
-              </Link>
-            </GridItem>
+            {projectItemList.map((sp) => {
+              console.log(sp);
+              return (
+                <GridItem key={sp.id} xs={12} sm={4} md={4}>
+                  <InfoArea
+                    vertical
+                    icon={FormatPaint}
+                    title={sp.requirement}
+                    description=""
+                    iconColor="danger"
+                  />
+                  <h5 className={classes.description}>
+                    Max price{sp.maxPrice} <br />
+                    Min price{sp.minPrice} <br />
+                  </h5>
+                  <Link to={`/project-item-detail/${sp.id}`}>
+                    <Button
+                      color="rose"
+                      target="_blank"
+                      className={classes.navButton}
+                      round
+                    >
+                      View detail
+                    </Button>
+                  </Link>
+                </GridItem>
+              );
+            })}
           </GridContainer>
         </div>
         {/* Feature 1 END */}

@@ -139,7 +139,7 @@ export default function SectionContact() {
                 )}
               >
                 <Button color="primary" round>
-                  Let{"'"}s talk
+                  Save
                 </Button>
               </GridItem>
             </GridContainer>

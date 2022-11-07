@@ -19,6 +19,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import descriptionStyle from "assets/jss/material-kit-pro-react/views/presentationSections/descriptionStyle.js";
 import React from "react";
 import PropTypes from "prop-types";
+// import projectApi from "api/projectApi.js";
 
 const useStyles = makeStyles(descriptionStyle);
 
@@ -27,6 +28,21 @@ SectionDescription.propTypes = {
 };
 export default function SectionDescription({ projectList }) {
   // const { projectList } = projectList;
+
+  // const [projectType, setProjectType] = useState([]);
+  // useEffect(() => {
+  //   const fetchProjectList = async () => {
+  //     try {
+  //       const response = await projectApi.getProjecTypeByID(3);
+  //       console.log("Fetch project type successfully: ", response);
+  //       setProjectType(response);
+  //     } catch (error) {
+  //       console.log("Failed to fetch project type: ", error);
+  //     }
+  //   };
+  //   fetchProjectList();
+  // }, []);
+
   const classes = useStyles();
   return (
     <div className={classes.section}>
@@ -80,7 +96,9 @@ export default function SectionDescription({ projectList }) {
                     iconColor="success"
                     vertical={true}
                   />
-                  <Link to={"/sections"}>
+                  {/* <h5 className={classes.description}>{sp.description}</h5>
+                  <h5 className={classes.description}>{projectType.name}</h5> */}
+                  <Link to={`/project-item/${sp.id}`}>
                     <Button
                       color="rose"
                       target="_blank"

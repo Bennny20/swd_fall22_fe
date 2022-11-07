@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React from "react";
+import React, { useEffect, useState } from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // @material-ui/core components
@@ -15,18 +15,32 @@ import GridItem from "components/Grid/GridItem.js";
 import Parallax from "components/Parallax/Parallax.js";
 import Footer from "components/Footer/Footer.js";
 // sections for this page
-import HeaderLinks from "components/Header/HeaderLinks.js";
+import HeaderLinks from "components/Header/HeaderLinks3.js";
 import SectionDescription from "views/AboutUsPage/Sections/SectionDescription.js";
 import SectionTeam from "views/AboutUsPage/Sections/SectionTeam.js";
 import SectionServices from "views/AboutUsPage/Sections/SectionServices.js";
 import SectionOffice from "views/AboutUsPage/Sections/SectionOffice.js";
 import SectionContact from "views/AboutUsPage/Sections/NewItem.js";
-
+import projectApi from "api/projectApi.js";
 import aboutUsStyle from "assets/jss/material-kit-pro-react/views/aboutUsStyle.js";
 
 const useStyles = makeStyles(aboutUsStyle);
 
 export default function AboutUsPage() {
+  const [project, setProject] = useState([]);
+  useEffect(() => {
+    const fetchProjectList = async () => {
+      try {
+        const response = await projectApi.getProjectByID(1);
+        console.log("Fetch projects successfully: ", response);
+        setProject(response);
+      } catch (error) {
+        console.log("Failed to fetch project list: ", error);
+      }
+    };
+    fetchProjectList();
+  }, []);
+
   React.useEffect(() => {
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
@@ -60,8 +74,8 @@ export default function AboutUsPage() {
                 classes.textCenter
               )}
             >
-              <h1 className={classes.title}>Add new project</h1>
-             
+              <h2 className={classes.title}>{project.name}</h2>
+              <h5 className={classes.title}>{project.description}</h5>
             </GridItem>
           </GridContainer>
         </div>
@@ -76,44 +90,18 @@ export default function AboutUsPage() {
         </div>
       </div>
       <Footer
+        className={classes.footer}
         content={
           <div>
             <div className={classes.left}>
               <List className={classes.list}>
                 <ListItem className={classes.inlineBlock}>
                   <a
-                    href="https://www.creative-tim.com/?ref=mkpr-about-us"
-                    className={classes.block}
+                    href="https://www.creative-tim.com/?ref=mkpr-login"
                     target="_blank"
-                  >
-                    Creative Tim
-                  </a>
-                </ListItem>
-                <ListItem className={classes.inlineBlock}>
-                  <a
-                    href="https://www.creative-tim.com/presentation?ref=mkpr-about-us"
                     className={classes.block}
-                    target="_blank"
                   >
-                    About us
-                  </a>
-                </ListItem>
-                <ListItem className={classes.inlineBlock}>
-                  <a
-                    href="//blog.creative-tim.com/"
-                    className={classes.block}
-                    target="_blank"
-                  >
-                    Blog
-                  </a>
-                </ListItem>
-                <ListItem className={classes.inlineBlock}>
-                  <a
-                    href="https://www.creative-tim.com/license?ref=mkpr-about-us"
-                    className={classes.block}
-                    target="_blank"
-                  >
-                    Licenses
+                    Happy connection
                   </a>
                 </ListItem>
               </List>
@@ -122,12 +110,11 @@ export default function AboutUsPage() {
               &copy; {1900 + new Date().getYear()} , made with{" "}
               <Favorite className={classes.icon} /> by{" "}
               <a
-                href="https://www.creative-tim.com?ref=mkpr-about-us"
+                href="https://www.creative-tim.com?ref=mkpr-login"
                 target="_blank"
               >
-                Creative Tim
+                SWD GROUP
               </a>{" "}
-              for a better web.
             </div>
           </div>
         }
