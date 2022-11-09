@@ -22,10 +22,13 @@ import SectionServices from "views/AboutUsPage/Sections/SectionServices.js";
 import SectionOffice from "views/AboutUsPage/Sections/SectionOffice.js";
 import SectionContact from "views/AboutUsPage/Sections/FormUpdateProject.js";
 import aboutUsStyle from "assets/jss/material-kit-pro-react/views/aboutUsStyle.js";
+import FormUpdateProject from "./Sections/FormUpdateProject";
+import { useParams } from "react-router-dom";
 
 const useStyles = makeStyles(aboutUsStyle);
 
-export default function AboutUsPage() {
+export default function UpdateProject() {
+  const { id = "" } = useParams();
   React.useEffect(() => {
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
@@ -66,29 +69,25 @@ export default function AboutUsPage() {
       </Parallax>
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div className={classes.container}>
-          {/* <SectionDescription />
-          <SectionTeam />
-          <SectionServices />
-          <SectionOffice /> */}
-          <SectionContact />
+          <FormUpdateProject id={id} />
         </div>
       </div>
       <Footer
-       className={classes.footer}
-       content={
-         <div>
-           <div className={classes.left}>
-             <List className={classes.list}>
-               <ListItem className={classes.inlineBlock}>
-                 <a
-                   href="https://www.creative-tim.com/?ref=mkpr-login"
-                   target="_blank"
-                   className={classes.block}
-                 >
-                   Happy connection
-                 </a>
-               </ListItem>
-               {/* <ListItem className={classes.inlineBlock}>
+        className={classes.footer}
+        content={
+          <div>
+            <div className={classes.left}>
+              <List className={classes.list}>
+                <ListItem className={classes.inlineBlock}>
+                  <a
+                    href="https://www.creative-tim.com/?ref=mkpr-login"
+                    target="_blank"
+                    className={classes.block}
+                  >
+                    Happy connection
+                  </a>
+                </ListItem>
+                {/* <ListItem className={classes.inlineBlock}>
                  <a
                    href="https://www.creative-tim.com/presentation?ref=mkpr-login"
                    target="_blank"
@@ -114,20 +113,20 @@ export default function AboutUsPage() {
                    Licenses
                  </a>
                </ListItem> */}
-             </List>
-           </div>
-           <div className={classes.right}>
-             &copy; {1900 + new Date().getYear()} , made with{" "}
-             <Favorite className={classes.icon} /> by{" "}
-             <a
-               href="https://www.creative-tim.com?ref=mkpr-login"
-               target="_blank"
-             >
-               SWD GROUP
-             </a>{" "}
-           </div>
-         </div>
-       }
+              </List>
+            </div>
+            <div className={classes.right}>
+              &copy; {1900 + new Date().getYear()} , made with{" "}
+              <Favorite className={classes.icon} /> by{" "}
+              <a
+                href="https://www.creative-tim.com?ref=mkpr-login"
+                target="_blank"
+              >
+                SWD GROUP
+              </a>{" "}
+            </div>
+          </div>
+        }
       />
     </div>
   );

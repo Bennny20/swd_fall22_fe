@@ -1,41 +1,34 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // @material-ui/core components
-import FormControl from "@material-ui/core/FormControl";
-import MenuItem from "@material-ui/core/MenuItem";
-import Select from "@material-ui/core/Select";
 import { makeStyles } from "@material-ui/core/styles";
+import { TextField, Button, Box } from "@material-ui/core";
 // @material-ui/icons
 // core components
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
-import CustomInput from "components/CustomInput/CustomInput.js";
-import Button from "components/CustomButtons/Button.js";
-import projectApi from "api/projectApi";
 import contactStyle from "assets/jss/material-kit-pro-react/views/aboutUsSections/contactStyle.js";
-
+import projectApi from "api/projectApi";
+import PropTypes from "prop-types";
+import { useHistory } from "react-router-dom";
 const useStyles = makeStyles(contactStyle);
+FormUpdateProject.propTypes = {
+  id: PropTypes.string.isRequired,
+};
 
-export default function SectionContact() {
-  const [projectTypeList, setProjectTypeList] = useState([]);
-  useEffect(() => {
-    const fetchProjectTypeList = async () => {
-      try {
-        const params = { page: 1, size: 10 };
-        const response = await projectApi.getAllProjectType(params);
-        console.log("Fetch projects successfully: ", response);
-        setProjectTypeList(response);
-      } catch (error) {
-        console.log("Failed to fetch project list: ", error);
-      }
-    };
-    fetchProjectTypeList();
-  }, []);
-
-  const [specialitySelect, setSpecialitySelect] = React.useState("1");
-  const handleSpeciality = (event) => {
-    setSpecialitySelect(event.target.value);
+export default function FormUpdateProject({ id }) {
+  const [name, setName] = useState();
+  const [des, setDes] = useState();
+  const history = useHistory();
+  console.log(id);
+  const handleUpdate = async () => {
+    const res = await projectApi.putProjectByID(id, {
+      name: name,
+      description: des,
+    });
+    console.log(res);
+    history.push("/home");
   };
   const classes = useStyles();
   return (
@@ -55,77 +48,23 @@ export default function SectionContact() {
           <form>
             <GridContainer>
               <GridItem md={20} sm={20}>
-                <CustomInput
-                  labelText="Name project"
-                  formControlProps={{
-                    fullWidth: true,
-                  }}
-                />
-                <CustomInput
-                  labelText="Time"
-                  formControlProps={{
-                    fullWidth: true,
-                  }}
-                />
-                <CustomInput
-                  labelText="Description"
-                  id="description"
-                  formControlProps={{
-                    fullWidth: true,
-                    className: classes.textArea,
-                  }}
-                  inputProps={{
-                    multiline: true,
-                    rows: 5,
-                  }}
-                />
-                <FormControl
-                  fullWidth
-                  className={
-                    classes.selectFormControl +
-                    " " +
-                    classes.selectUnderlineRoot
-                  }
-                >
-                  <Select
-                    MenuProps={{
-                      className: classes.selectMenu,
-                    }}
-                    classes={{
-                      select: classes.select,
-                    }}
-                    value={specialitySelect}
-                    onChange={handleSpeciality}
-                    inputProps={{
-                      name: "specialitySelect",
-                      id: "speciality-select",
-                    }}
-                  >
-                    <MenuItem
-                      disabled
-                      classes={{
-                        root: classes.selectMenuItem,
-                      }}
-                    >
-                      Type
-                    </MenuItem>
-                    {projectTypeList.map((sp) => {
-                      console.log(sp);
-                      return (
-                        <MenuItem
-                          classes={{
-                            root: classes.selectMenuItem,
-                            selected: classes.selectMenuItemSelected,
-                          }}
-                          key={sp.id}
-                          value={sp.name}
-                        >
-                          {sp.name}
-                        </MenuItem>
-                      );
-                    })}
-                  </Select>
-                </FormControl>
+                <Box width={500}>
+                  <TextField
+                    fullWidth
+                    placeholder="Name Project"
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </Box>
+                <Box width={500}>
+                  <TextField
+                    fullWidth
+                    placeholder="Description"
+                    id="description"
+                    multiline
+                    rowsMax={5}
+                    onChange={(e) => setDes(e.target.value)}
+                  />
+                </Box>
               </GridItem>
             </GridContainer>
             <GridContainer>
@@ -138,7 +77,7 @@ export default function SectionContact() {
                   classes.textCenter
                 )}
               >
-                <Button color="primary" round>
+                <Button color="primary" round onClick={handleUpdate}>
                   Save
                 </Button>
               </GridItem>

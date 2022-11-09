@@ -50,7 +50,7 @@ ReactDOM.render(
       <Route path="/about-us" component={AboutUsPage} />
       <Route path="/new-project-item" component={NewItem} />
       <Route path="/update-project-item" component={UpdateItem} />
-      <Route path="/update-project" component={UpdateProject} />
+      <Route path="/update-project/:id" component={UpdateProject} />
       <Route path="/blog-post" component={BlogPostPage} />
       <Route path="/blog-posts" component={BlogPostsPage} />
       <Route path="/components" component={ComponentsPage} />

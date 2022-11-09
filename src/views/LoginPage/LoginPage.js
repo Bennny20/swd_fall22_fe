@@ -51,7 +51,7 @@ const uiConfig = {
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
     // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
   ],
-  // signInSuccessUrl: "/home",
+  signInSuccessUrl: "/home",
 };
 
 const useStyles = makeStyles(loginPageStyle);

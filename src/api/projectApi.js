@@ -14,6 +14,11 @@ const projectApi = {
     return axiosClient.get(url, { params });
   },
 
+  getProjectByName: (dataSearch) => {
+    const url = `/projects`;
+    return axiosClient.get(url, { dataSearch: dataSearch });
+  },
+
   getProjectByID: (id) => {
     const url = `/project/${id}`;
     return axiosClient.get(url);
@@ -25,14 +30,14 @@ const projectApi = {
   },
 
   //API PROJECT ITEM
-  //getByProjetID
-  getProjectItemByID: (params) => {
+  //getByProjectID
+  getProjectItemsByID: (params) => {
     const url = `/project-items`;
     return axiosClient.get(url, { params });
   },
 
-  //getByProjetIemID
-  getProjecItemtByID: (id) => {
+  //getByProjectIemID
+  getProjectItemByID: (id) => {
     const url = `/project-item/${id}`;
     return axiosClient.get(url);
   },
@@ -49,10 +54,15 @@ const projectApi = {
     return axiosClient.get(url, { params });
   },
 
-  //getByProjetIemID
-  getProjecTypeByID: (id) => {
+  //getByProjectIemID
+  getProjectTypeByID: (id) => {
     const url = `/project-type/${id}`;
     return axiosClient.get(url);
+  },
+
+  putProjectByID: (id, body) => {
+    const url = `project/${id}`;
+    return axiosClient.put(url, body);
   },
 };
 export default projectApi;

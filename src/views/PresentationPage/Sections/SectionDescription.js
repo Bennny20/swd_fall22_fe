@@ -5,9 +5,9 @@ import InfoArea from "components/InfoArea/InfoArea.js";
 import { Link } from "react-router-dom";
 import Button from "components/CustomButtons/Button.js";
 // import CardBody from "components/Card/CardBody.js";
-import CustomInput from "components/CustomInput/CustomInput.js";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import Search from "@material-ui/icons/Search";
+// import CustomInput from "components/CustomInput/CustomInput.js";
+// import InputAdornment from "@material-ui/core/InputAdornment";
+// import Search from "@material-ui/icons/Search";
 // import Mail from "@material-ui/icons/Mail";
 // @material-ui icons
 // import Apps from "@material-ui/icons/Apps";
@@ -18,30 +18,28 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import descriptionStyle from "assets/jss/material-kit-pro-react/views/presentationSections/descriptionStyle.js";
 import React from "react";
-import PropTypes from "prop-types";
-// import projectApi from "api/projectApi.js";
-
+// import { TextField } from "@material-ui/core";
+// import projectApi from "api/projectApi";
+import { useEffect, useState } from "react";
+import projectApi from "api/projectApi";
 const useStyles = makeStyles(descriptionStyle);
 
-SectionDescription.propTypes = {
-  projectList: PropTypes.node.isRequired,
-};
-export default function SectionDescription({ projectList }) {
-  // const { projectList } = projectList;
+export default function SectionDescription() {
+  const [projectList, setProjectList] = useState([]);
+  // const [filterSearch, setFilterSearch] = useState([]);
+  useEffect(() => {
+    const fetchProjectList = async () => {
+      try {
+        const params = { userID: 4, page: 1, size: 10 };
+        const response = await projectApi.getByUserID(params);
+        setProjectList(response);
+      } catch (error) {
+        console.log("Failed to fetch project list: ", error);
+      }
+    };
 
-  // const [projectType, setProjectType] = useState([]);
-  // useEffect(() => {
-  //   const fetchProjectList = async () => {
-  //     try {
-  //       const response = await projectApi.getProjecTypeByID(3);
-  //       console.log("Fetch project type successfully: ", response);
-  //       setProjectType(response);
-  //     } catch (error) {
-  //       console.log("Failed to fetch project type: ", error);
-  //     }
-  //   };
-  //   fetchProjectList();
-  // }, []);
+    fetchProjectList();
+  }, []);
 
   const classes = useStyles();
   return (
@@ -56,10 +54,10 @@ export default function SectionDescription({ projectList }) {
           </GridItem>
         </GridContainer>
         <div className={classes.features}>
-          <form>
+          {/* <form>
             <GridContainer>
               <GridItem xs={12} sm={6} md={6} lg={8}>
-                <CustomInput
+                <TextField
                   id="emailPreFooter"
                   formControlProps={{
                     fullWidth: true,
@@ -71,6 +69,7 @@ export default function SectionDescription({ projectList }) {
                     ),
                     placeholder: "Find project...",
                   }}
+                  onChange={(e) => setFilterSearch(e.target.value)}
                 />
               </GridItem>
               <GridItem xs={12} sm={6} md={6} lg={4}>
@@ -78,12 +77,13 @@ export default function SectionDescription({ projectList }) {
                   color="primary"
                   block
                   className={classes.subscribeButton}
+                  onClick={(e) => setFilterSearch(e.target.value)}
                 >
                   <Search className={classes.searchIcon} />
                 </Button>
               </GridItem>
             </GridContainer>
-          </form>
+          </form> */}
           <GridContainer>
             {projectList.map((sp) => {
               console.log(sp);

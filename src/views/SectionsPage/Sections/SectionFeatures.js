@@ -67,7 +67,7 @@ export default function SectionFeatures({ ...rest }) {
   useEffect(() => {
     const fetchProjectList = async () => {
       try {
-        const response = await projectApi.getProjecTypeByID(
+        const response = await projectApi.getProjectTypeByID(
           project.projectTypeID
         );
         console.log("Fetch project type successfully: ", response);
