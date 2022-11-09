@@ -86,12 +86,12 @@ export default function PresentationPage() {
       .onAuthStateChanged(async (user) => {
         if (!user) {
           //user logs out, handle something here
-          console.log("User is not logged in");
+          // console.log("User is not logged in");
           return;
         }
-        console.log("Logged in user: ", user.displayName);
+        // console.log("Logged in user: ", user.displayName);
         const token = await user.getIdToken();
-        console.log("Logged in user with token: ", token);
+        // console.log("Logged in user with token: ", token);
       });
     return () => unregisterAuthObserver(); // Make sure we un-register Firebase observers when the component unmounts.
   }, []);
