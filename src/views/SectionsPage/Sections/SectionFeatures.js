@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import FormatPaint from "@material-ui/icons/FormatPaint";
+import { Redirect } from "react-router-dom";
+import "./css.css";
 // @material-ui/icons
 // import Chat from "@material-ui/icons/Chat";
 // import VerifiedUser from "@material-ui/icons/VerifiedUser";
@@ -37,7 +39,7 @@ export default function SectionFeatures({ ...rest }) {
   useEffect(() => {
     const fetchProjectList = async () => {
       try {
-        const response = await projectApi.getProjectByID(1);
+        const response = await projectApi.getProjectByID(rest.idd);
         console.log("Fetch projects successfully: ", response);
         setProject(response);
       } catch (error) {
@@ -52,7 +54,7 @@ export default function SectionFeatures({ ...rest }) {
   useEffect(() => {
     const fetchProjecItemList = async () => {
       try {
-        const params = { projectID: 1, page: 1, size: 10 };
+        const params = { projectID: rest.idd, page: 1, size: 10 };
         const response = await projectApi.getProjectItemByID(params);
         console.log("Fetch projects item successfully: ", response);
         setProjectItemList(response);
@@ -78,6 +80,15 @@ export default function SectionFeatures({ ...rest }) {
     };
     fetchProjectList();
   }, []);
+
+  const handleDeleteProject = () => {
+    try {
+      projectApi.deleteProject(project.id);
+      return Redirect("/home");
+    } catch (error) {
+      console.log("Failed to fetch project type: ", error);
+    }
+  };
 
   const classes = useStyles();
   return (
@@ -136,6 +147,9 @@ export default function SectionFeatures({ ...rest }) {
                 </GridItem>
               );
             })}
+            <button className="button_delete" onClick={handleDeleteProject}>
+              Delete project <b>{project.name}</b>
+            </button>
           </GridContainer>
         </div>
         {/* Feature 1 END */}

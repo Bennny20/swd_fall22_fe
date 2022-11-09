@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "./css.css";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // @material-ui/core components
@@ -10,15 +11,19 @@ import { makeStyles } from "@material-ui/core/styles";
 // core components
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
-import CustomInput from "components/CustomInput/CustomInput.js";
+// import CustomInput from "components/CustomInput/CustomInput.js";
 import Button from "components/CustomButtons/Button.js";
 import projectApi from "api/projectApi";
 import contactStyle from "assets/jss/material-kit-pro-react/views/aboutUsSections/contactStyle.js";
+// import TextField from "@mui/material/TextField";
 
 const useStyles = makeStyles(contactStyle);
 
 export default function SectionContact() {
   const [projectTypeList, setProjectTypeList] = useState([]);
+  const [nameProject, setnameProject] = useState("");
+  const [description, setdescription] = useState("");
+
   useEffect(() => {
     const fetchProjectTypeList = async () => {
       try {
@@ -38,6 +43,34 @@ export default function SectionContact() {
     setSpecialitySelect(event.target.value);
   };
   const classes = useStyles();
+  const handleChangeValue = (event) => {
+    console.log(event.target.name, event.target.value);
+    if (event.target.name === "nameProject") {
+      setnameProject(event.target.value);
+      console.log(event.target.value);
+    } else {
+      setdescription(event.target.value);
+      console.log(event.target.value);
+    }
+  };
+
+  const handleSubmitForm = () => {
+    try {
+      let data = {
+        id: 8,
+        userID: 4,
+        projectTypeID: 1,
+        name: nameProject,
+        description: description,
+        status: 1,
+      };
+      let repose = projectApi.postNewProject(data);
+      console.log(repose);
+    } catch (error) {
+      console.log("Failed to fetch project type: ", error);
+    }
+  };
+
   return (
     <div className={classes.aboutUs}>
       <GridContainer justify="center">
@@ -47,38 +80,30 @@ export default function SectionContact() {
           className={classNames(classes.mrAuto, classes.mlAuto)}
         >
           <h4 className={classNames(classes.title, classes.textCenter)}></h4>
-          {/* <h4 className={classNames(classes.description, classes.textCenter)}>
-            Divide details about your product or agency work into parts. Write a
-            few lines about each one and contact us about any further
-            collaboration. We will get back to you in a couple of hours.
-          </h4> */}
           <form>
             <GridContainer>
               <GridItem md={20} sm={20}>
-                <CustomInput
-                  labelText="Name project"
-                  formControlProps={{
-                    fullWidth: true,
-                  }}
+                <label>Name project: </label>
+                <input
+                  className="CustomInput"
+                  id="standard-basic"
+                  onChange={handleChangeValue}
+                  name="nameProject"
+                  value={nameProject}
+                  label="Name project"
+                  variant="staDescriptionndard"
                 />
-                <CustomInput
-                  labelText="Time"
-                  formControlProps={{
-                    fullWidth: true,
-                  }}
+                <label>Description: </label>
+                <input
+                  className="CustomInput"
+                  id="standard-basic"
+                  label="Description"
+                  variant="staDescriptionndard"
+                  onChange={handleChangeValue}
+                  name="description"
+                  value={description}
                 />
-                <CustomInput
-                  labelText="Description"
-                  id="description"
-                  formControlProps={{
-                    fullWidth: true,
-                    className: classes.textArea,
-                  }}
-                  inputProps={{
-                    multiline: true,
-                    rows: 5,
-                  }}
-                />
+
                 <FormControl
                   fullWidth
                   className={
@@ -110,7 +135,7 @@ export default function SectionContact() {
                       Type
                     </MenuItem>
                     {projectTypeList.map((sp) => {
-                      console.log(sp);
+                      // console.log(sp);
                       return (
                         <MenuItem
                           classes={{
@@ -138,7 +163,7 @@ export default function SectionContact() {
                   classes.textCenter
                 )}
               >
-                <Button color="primary" round>
+                <Button onClick={handleSubmitForm} color="primary" round>
                   Save
                 </Button>
               </GridItem>
