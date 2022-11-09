@@ -62,9 +62,9 @@ ReactDOM.render(
       <Route path="/profile-page" component={ProfilePage} />
       <Route path="/product-page" component={ProductPage} />
       <Route path="/sections" component={SectionsPage} />
-      <Route path="/project-item" component={SectionsPage} />
+      <Route path="/project-item/:id" component={SectionsPage} />
       <Route path="/shopping-cart-page" component={ShoppingCartPage} />
-      <Route path="/project-item-detail" component={ShoppingCartPage} />
+      <Route path="/project-item-detail/:id" component={ShoppingCartPage} />
       <Route path="/signup-page" component={SignupPage} />
       <Route path="/error-page" component={ErrorPage} />
       <Route path="/home" component={PresentationPage} />

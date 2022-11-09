@@ -1,16 +1,17 @@
 import React from "react";
+import "./css.css";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // @material-ui/core components
-import FormControl from "@material-ui/core/FormControl";
-import MenuItem from "@material-ui/core/MenuItem";
-import Select from "@material-ui/core/Select";
+// import FormControl from "@material-ui/core/FormControl";
+// import MenuItem from "@material-ui/core/MenuItem";
+// import Select from "@material-ui/core/Select";
 import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 // core components
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
-import CustomInput from "components/CustomInput/CustomInput.js";
+// import CustomInput from "components/CustomInput/CustomInput.js";
 import Button from "components/CustomButtons/Button.js";
 
 import contactStyle from "assets/jss/material-kit-pro-react/views/aboutUsSections/contactStyle.js";
@@ -18,10 +19,10 @@ import contactStyle from "assets/jss/material-kit-pro-react/views/aboutUsSection
 const useStyles = makeStyles(contactStyle);
 
 export default function SectionContact() {
-  const [specialitySelect, setSpecialitySelect] = React.useState("1");
-  const handleSpeciality = (event) => {
-    setSpecialitySelect(event.target.value);
-  };
+  // const [specialitySelect, setSpecialitySelect] = React.useState("1");
+  // const handleSpeciality = (event) => {
+  //   setSpecialitySelect(event.target.value);
+  // };
   const classes = useStyles();
   return (
     <div className={classes.aboutUs}>
@@ -35,37 +36,47 @@ export default function SectionContact() {
           <form>
             <GridContainer>
               <GridItem md={20} sm={20}>
-                <CustomInput
-                  labelText="Apply num"
-                  formControlProps={{
-                    fullWidth: true,
-                  }}
+                <label>Apply num: </label>
+                <input
+                  className="CustomInput"
+                  id="standard-basic"
+                  // onChange={handleChangeValue}
+                  name="nameProject"
+                  // value={nameProject}
+                  label="Name project"
+                  variant="staDescriptionndard"
                 />
-                <CustomInput
-                  labelText="Min price"
-                  formControlProps={{
-                    fullWidth: true,
-                  }}
+                <label>Min price: </label>
+                <input
+                  className="CustomInput"
+                  id="standard-basic"
+                  // onChange={handleChangeValue}
+                  name="nameProject"
+                  // value={nameProject}
+                  label="Name project"
+                  variant="staDescriptionndard"
                 />
-                <CustomInput
-                  labelText="Max price"
-                  formControlProps={{
-                    fullWidth: true,
-                  }}
+                <label>Max price: </label>
+                <input
+                  className="CustomInput"
+                  id="standard-basic"
+                  // onChange={handleChangeValue}
+                  name="nameProject"
+                  // value={nameProject}
+                  label="Name project"
+                  variant="staDescriptionndard"
                 />
-                <CustomInput
-                  labelText="Requiment"
-                  id="description"
-                  formControlProps={{
-                    fullWidth: true,
-                    className: classes.textArea,
-                  }}
-                  inputProps={{
-                    multiline: true,
-                    rows: 5,
-                  }}
+                <label>Requiment: </label>
+                <input
+                  className="CustomInput"
+                  id="standard-basic"
+                  // onChange={handleChangeValue}
+                  name="nameProject"
+                  // value={nameProject}
+                  label="Name project"
+                  variant="staDescriptionndard"
                 />
-                <FormControl
+                {/* <FormControl
                   fullWidth
                   className={
                     classes.selectFormControl +
@@ -123,7 +134,7 @@ export default function SectionContact() {
                       I{"'"}m a Hero
                     </MenuItem>
                   </Select>
-                </FormControl>
+                </FormControl> */}
               </GridItem>
             </GridContainer>
             <GridContainer>

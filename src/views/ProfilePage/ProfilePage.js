@@ -48,9 +48,9 @@ const useStyles = makeStyles(profilePageStyle);
 
 export default function ProfilePage({ ...rest }) {
   const id = 4;
-  console.log("User id: " +id);
+  console.log("User id: " + id);
 
-  //get app mảjor 
+  //get app mảjor
   // const [majorList, setMajorList] = useState([]);
   // useEffect(() => {
   //   const fetchProjectList = async () => {
@@ -68,34 +68,54 @@ export default function ProfilePage({ ...rest }) {
 
   // get user by id
   const [user, setUser] = useState([]);
+  const [roleDes, setroleDes] = useState("");
+  const [malorDes, setmalorDes] = useState("");
   useEffect(() => {
     const fetchUser = async () => {
       try {
         const response = await projectApi.getUserByID(id);
         console.log("Fetch user successfully: ", response);
         setUser(response);
+        setroleDes(response.role.description);
+        setmalorDes(response.major.description);
       } catch (error) {
         console.log("Failed to fetch user ", error);
       }
     };
     fetchUser();
   }, []);
- 
+
   const [projectList, setProjectList] = useState([]);
+  const [typeID, setTypeID] = useState([]);
   useEffect(() => {
     const fetchProjectList = async () => {
-      try {       
+      try {
         const params = { userID: id, page: 1, size: 10 };
         const response = await projectApi.getByUserID(params);
         console.log("Fetch projects successfully: ", response);
         setProjectList(response);
       } catch (error) {
-        console.log("Failed to fetch project list: ", error);
+        console.log("Failed to fetch type list: ", error);
       }
     };
     fetchProjectList();
   }, []);
-  
+
+  const [projectType, setProjectType] = useState([]);
+  useEffect(() => {
+    const fetchProjectType = async () => {
+      try {
+        const params = { page: 1, size: 10 };
+        const response = await projectApi.getAllProjectType(params);
+        console.log("Fetch project type successfully: ", response);
+        setProjectType(response);
+      } catch (error) {
+        console.log("Failed to fetch tpe item: ", error);
+      }
+    };
+    fetchProjectType();
+  }, []);
+
   React.useEffect(() => {
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
@@ -107,6 +127,7 @@ export default function ProfilePage({ ...rest }) {
     classes.imgFluid
   );
   const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
+
   return (
     <div>
       <Header
@@ -135,7 +156,7 @@ export default function ProfilePage({ ...rest }) {
                 </div>
                 <div className={classes.name}>
                   <h3 className={classes.title}>{user.fullname}</h3>
-                  {/* <h4>Major: {user.major.description}</h4> */}
+                  <h4>Major: {malorDes}</h4>
                 </div>
               </div>
             </GridItem>
@@ -143,7 +164,7 @@ export default function ProfilePage({ ...rest }) {
           <div className={classNames(classes.description, classes.textCenter)}>
             <h5>Email: {user.email}</h5>
             <h5>Phone: {user.phone}</h5>
-            {/* <h5>Role: {user.role.description}</h5> */}
+            <h5>Role: {roleDes}</h5>
             <h5>Day of birth: {user.dob}</h5>
           </div>
           <div className={classes.profileTabs}>
@@ -156,7 +177,38 @@ export default function ProfilePage({ ...rest }) {
                   tabIcon: Camera,
                   tabContent: (
                     <div>
-                      <GridContainer justify="center">
+                      <table className="" style={{ width: "100%" }}>
+                        <thead>
+                          <tr className="thead_tr">
+                            <th style={{ padding: "20px 0px" }}></th>
+                            <th style={{ padding: "20px 0px" }}>Name</th>
+                            <th style={{ padding: "20px 0px" }}>Description</th>
+                            <th style={{ padding: "20px 0px" }}>Type</th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {projectList.map((sp) => {
+                            console.log(sp);
+                            return (
+                              <tr>
+                                <td></td>
+                                <td style={{ padding: "5px 0px" }}>
+                                  {sp.name}
+                                </td>
+                                <td style={{ padding: "5px 0px" }}>
+                                  {sp.description}
+                                </td>
+                                <td style={{ padding: "5px 0px" }}>
+                                  {sp.projectTypeID}
+                                </td>
+                                <td></td>
+                              </tr>
+                            );
+                          })}
+                        </tbody>
+                      </table>
+                      {/* <GridContainer justify="center">
                         {projectList.map((sp) => {
                           console.log(sp);
                           return (
@@ -174,7 +226,10 @@ export default function ProfilePage({ ...rest }) {
                                         {sp.name}
                                       </h4>
                                       <Muted>
-                                        <h6> Type: {sp.projectTypeID}</h6>
+                                        <h6>
+                                          {" "}
+                                          Type: {projectType.projectTypeID}
+                                        </h6>
                                       </Muted>
                                       <p className={classes.description}>
                                         Description: {sp.description}
@@ -189,7 +244,7 @@ export default function ProfilePage({ ...rest }) {
                             </GridItem>
                           );
                         })}
-                      </GridContainer>
+                      </GridContainer> */}
                     </div>
                   ),
                 },
@@ -252,31 +307,31 @@ export default function ProfilePage({ ...rest }) {
                   </a>
                 </ListItem>
                 {/* <ListItem className={classes.inlineBlock}>
-                  <a
-                    href="https://www.creative-tim.com/presentation?ref=mkpr-login"
-                    target="_blank"
-                    className={classes.block}
-                  >
-                    About us
-                  </a>
-                </ListItem>
-                <ListItem className={classes.inlineBlock}>
-                  <a
-                    href="//blog.creative-tim.com/"
-                    className={classes.block}
-                  >
-                    Blog
-                  </a>
-                </ListItem>
-                <ListItem className={classes.inlineBlock}>
-                  <a
-                    href="https://www.creative-tim.com/license?ref=mkpr-login"
-                    target="_blank"
-                    className={classes.block}
-                  >
-                    Licenses
-                  </a>
-                </ListItem> */}
+                    <a
+                      href="https://www.creative-tim.com/presentation?ref=mkpr-login"
+                      target="_blank"
+                      className={classes.block}
+                    >
+                      About us
+                    </a>
+                  </ListItem>
+                  <ListItem className={classes.inlineBlock}>
+                    <a
+                      href="//blog.creative-tim.com/"
+                      className={classes.block}
+                    >
+                      Blog
+                    </a>
+                  </ListItem>
+                  <ListItem className={classes.inlineBlock}>
+                    <a
+                      href="https://www.creative-tim.com/license?ref=mkpr-login"
+                      target="_blank"
+                      className={classes.block}
+                    >
+                      Licenses
+                    </a>
+                  </ListItem> */}
               </List>
             </div>
             <div className={classes.right}>

@@ -1,0 +1,7 @@
+.CustomInput {
+    display: block;
+    width: 100%;
+    margin: 20px 0;
+    border: none;
+    border-bottom: solid 1px rgb(196, 192, 192);
+}

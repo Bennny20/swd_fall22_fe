@@ -28,7 +28,19 @@ const projectApi = {
     const url = "/projects/user";
     return axiosClient.get(url, { params });
   },
+  
+  //Post project
+  postNewProject: (data) => {
+    console.log(data);
+    const url = "/project";
+   return axiosClient.post(url, { data });
+  },
 
+  //delete project
+  deleteProject: (id) => {
+    const url = `/project/${id}`;
+   return axiosClient.delete(url);
+  },
   //API PROJECT ITEM
   //getByProjectID
   getProjectItemsByID: (params) => {
@@ -54,15 +66,29 @@ const projectApi = {
     return axiosClient.get(url, { params });
   },
 
+<<<<<<< HEAD
   //getByProjectIemID
   getProjectTypeByID: (id) => {
+=======
+  //getByProjetTypeID
+  getProjecTypeByID: (id) => {
+>>>>>>> be30e4504819c63218409580fa04fa6b74101f7c
     const url = `/project-type/${id}`;
     return axiosClient.get(url);
   },
 
+<<<<<<< HEAD
   putProjectByID: (id, body) => {
     const url = `project/${id}`;
     return axiosClient.put(url, body);
   },
+=======
+  //getListAppy
+  getListAppyByItemID: ( id, params) => {
+    const url = `/applications/projectitem/${id}`;
+    return axiosClient.get(url, { params });
+  },
+
+>>>>>>> be30e4504819c63218409580fa04fa6b74101f7c
 };
 export default projectApi;
